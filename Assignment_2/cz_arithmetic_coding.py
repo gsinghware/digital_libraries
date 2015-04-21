@@ -17,18 +17,18 @@ def decode(encoded_num, prob):
 
 	encoded_val = encoded_num
 
-	while(not(0.9 <= encoded_val < 1)):
+	while(not(0.9 <= encoded_val < 1)):  # while encoded value is not within the prob range of the EOF symbol
 		for symbol in prob:
 
-			if (prob[symbol][0] <= encoded_val < prob[symbol][1]):
+			if (prob[symbol][0] <= encoded_val < prob[symbol][1]):  #If encoded value falls within range of current symbol
 				sym_lower = prob[symbol][0]
 				sym_upper = prob[symbol][1]
 
-				decoded_sym = symbol
+				decoded_sym = symbol   # Decoded symbol is current symbol
 
 				print encoded_val, decoded_sym
 
-				if (symbol != '@'):
+				if (symbol != '@'):  # Until we have reached EOF symbol, remove encoding effects
 					curr_range = sym_upper - sym_lower
 					encoded_val = (encoded_val - sym_lower) / curr_range
 
